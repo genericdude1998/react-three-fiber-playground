@@ -19,20 +19,36 @@ export default function MainPage() {
           Appbar
         </Toolbar>
       </AppBar>
-      <Viewer />
+
+      <Viewer tabValue={tabValue} />
+
       <Tabs value={tabValue} onChange={handleTabValueChange}>
-        <Tab label="Item One" />
-        <Tab label="Item Two" />
-        <Tab label="Item Three" />
+        <Tab label="Phong" />
+        <Tab label="Lambert" />
+        <Tab label="Normal" />
+        <Tab label="Toon" />
+        <Tab label="Depth" />
+        <Tab label="Wireframe" />
+
       </Tabs>
 
       <TabPanel value={tabValue} index={0}>
-        Item One
+        Phong
       </TabPanel>
       <TabPanel value={tabValue} index={1}>
-        Item Two
+        Lambert
       </TabPanel>
       <TabPanel value={tabValue} index={2}>
+        Item Three
+      </TabPanel>
+
+      <TabPanel value={tabValue} index={3}>
+        Phong
+      </TabPanel>
+      <TabPanel value={tabValue} index={4}>
+        Item Two
+      </TabPanel>
+      <TabPanel value={tabValue} index={5}>
         Item Three
       </TabPanel>
     </MainPageContainer>
