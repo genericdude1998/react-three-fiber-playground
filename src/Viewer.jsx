@@ -1,18 +1,25 @@
 import React from 'react';
 import { Canvas } from '@react-three/fiber';
+import { styled } from '@mui/material';
 import Box from './Box';
 
-function Viewer() {
+export default function Viewer() {
   return (
-    <div>
+    <CanvasWrapper>
       <Canvas>
         <ambientLight />
         <pointLight position={[10, 10, 10]} />
-        <Box position={[-1.2, 0, 0]} />
+        <Box position={[0, 0, 0]} />
       </Canvas>
       ,
-    </div>
+    </CanvasWrapper>
   );
 }
 
-export default Viewer;
+const CanvasWrapper = styled('div')`
+  background-color: gray;
+  position: absolute;
+  top: 64px;
+  width: 100vw;
+  height: 70vh;
+`;
