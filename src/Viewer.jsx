@@ -18,8 +18,7 @@ export default function Viewer() {
 
 const CanvasWrapper = styled('div')`
   background-color: gray;
-  position: absolute;
-  top: 64px;
+  margin-top: 64px;
   width: 100vw;
   height: 70vh;
 `;
