@@ -3,6 +3,7 @@ import {
 } from '@mui/material';
 import React from 'react';
 import Viewer from '../Viewer';
+import Controls from './Controls';
 import TabPanel from './TabPanel';
 
 export default function MainPage() {
@@ -47,6 +48,7 @@ export default function MainPage() {
       <TabPanel value={tabValue} index={4}>
         Item Two
       </TabPanel>
+      <Controls />
     </MainPageContainer>
   );
 }
