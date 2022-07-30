@@ -27,7 +27,6 @@ export default function MainPage() {
         <Tab label="Lambert" />
         <Tab label="Normal" />
         <Tab label="Toon" />
-        <Tab label="Depth" />
         <Tab label="Wireframe" />
 
       </Tabs>
@@ -47,9 +46,6 @@ export default function MainPage() {
       </TabPanel>
       <TabPanel value={tabValue} index={4}>
         Item Two
-      </TabPanel>
-      <TabPanel value={tabValue} index={5}>
-        Item Three
       </TabPanel>
     </MainPageContainer>
   );

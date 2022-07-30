@@ -2,6 +2,7 @@ import React from 'react';
 import { Canvas } from '@react-three/fiber';
 import { styled } from '@mui/material';
 import Box from './Box';
+import Camera from './Camera';
 
 export default function Viewer({ tabValue }) {
   let material;
@@ -13,10 +14,8 @@ export default function Viewer({ tabValue }) {
     case 2:
       material = <meshNormalMaterial />; break;
     case 3:
-      material = <meshToonMaterial />; break;
+      material = <meshToonMaterial color="green" />; break;
     case 4:
-      material = <meshDepthMaterial />; break;
-    case 5:
       material = <meshPhongMaterial wireframe />; break;
     default:
       material = <meshBasicMaterial color="hotpink" />; break;
@@ -25,6 +24,7 @@ export default function Viewer({ tabValue }) {
   return (
     <CanvasWrapper>
       <Canvas>
+        <Camera />
         <pointLight position={[10, 10, 10]} />
         <Box position={[0, 0, 0]} material={material} />
       </Canvas>
