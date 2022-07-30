@@ -38,7 +38,7 @@ export default function Viewer({ tabValue }) {
         <pointLight position={[10, 10, 10]} intensity={5} />
         <Box position={[0, 0, 0]} material={material} />
         <Html fullscreen>
-          <Button onClick={toggleDrawer}>Controls</Button>
+          {!open && <Button onClick={toggleDrawer} sx={{ position: 'absolute', left: '90%' }}>Controls</Button>}
         </Html>
       </Canvas>
       <Controls toggleDrawer={toggleDrawer} open={open} />
