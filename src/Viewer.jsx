@@ -26,6 +26,7 @@ export default function Viewer({ tabValue }) {
   }
 
   const [open, setOpen] = React.useState(false);
+  const [directionalLight, setDirectionalLight] = React.useState({ active: true });
 
   const toggleDrawer = () => {
     setOpen((prevState) => !prevState);
@@ -35,13 +36,13 @@ export default function Viewer({ tabValue }) {
     <CanvasWrapper>
       <Canvas>
         <Camera />
-        <pointLight position={[10, 10, 10]} intensity={5} />
+        {directionalLight.active && <directionalLight position={[10, 10, 10]} intensity={5} />}
         <Box position={[0, 0, 0]} material={material} />
         <Html fullscreen>
           {!open && <Button onClick={toggleDrawer} sx={{ position: 'absolute', left: '90%' }}>Controls</Button>}
         </Html>
       </Canvas>
-      <Controls toggleDrawer={toggleDrawer} open={open} />
+      <Controls toggleDrawer={toggleDrawer} open={open} setDirectionalLight={setDirectionalLight} />
     </CanvasWrapper>
   );
 }

@@ -4,7 +4,11 @@ import {
   styled, Switch, Typography, FormGroup, FormControlLabel,
 } from '@mui/material';
 
-export default function Controls({ toggleDrawer, open }) {
+export default function Controls({ toggleDrawer, open, setDirectionalLight }) {
+  const toggleDirectionalLight = () => {
+    setDirectionalLight((dir) => ({ ...dir, active: !(dir.active) }));
+  };
+
   return (
     <React.Fragment key="Controls">
       <Drawer
@@ -15,7 +19,7 @@ export default function Controls({ toggleDrawer, open }) {
         <StyledControlsContainer>
           <Typography align="center">Controls</Typography>
           <FormGroup>
-            <FormControlLabel control={<Switch defaultChecked />} label="Directional Light On/Off" />
+            <FormControlLabel control={<Switch defaultChecked />} label="Directional Light On/Off" onChange={toggleDirectionalLight} />
           </FormGroup>
         </StyledControlsContainer>
       </Drawer>
