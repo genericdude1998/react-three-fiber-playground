@@ -15,6 +15,8 @@ export default function Controls({ toggleDrawer, open, setDirectionalLight }) {
         anchor="right"
         open={open}
         onClose={toggleDrawer}
+        BackdropProps={{ invisible: true }}
+
       >
         <StyledControlsContainer>
           <Typography align="center">Controls</Typography>
@@ -30,7 +32,7 @@ export default function Controls({ toggleDrawer, open, setDirectionalLight }) {
 const StyledControlsContainer = styled('div')`
   display:flex;
   flex-direction: column;
-  width: 300px;
+  width: 250px;
   height: 100%;
   background-color: darkgray;
   padding: 0 20px;
