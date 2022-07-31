@@ -1,8 +1,9 @@
 import * as React from 'react';
 import Drawer from '@mui/material/Drawer';
 import {
-  styled, Switch, Typography, FormGroup, FormControlLabel,
+  styled, Switch, Typography, FormGroup, FormControlLabel, IconButton,
 } from '@mui/material';
+import { Close } from '@mui/icons-material';
 
 export default function Controls({ toggleDrawer, open, setDirectionalLight }) {
   const toggleDirectionalLight = () => {
@@ -19,7 +20,13 @@ export default function Controls({ toggleDrawer, open, setDirectionalLight }) {
 
       >
         <StyledControlsContainer>
-          <Typography align="center">Controls</Typography>
+          <StyledTitle>
+            <Typography align="center" sx={{ flexGrow: 1 }}>Controls</Typography>
+            <StyledClose onClick={toggleDrawer}>
+              <Close />
+            </StyledClose>
+          </StyledTitle>
+
           <FormGroup>
             <FormControlLabel control={<Switch defaultChecked />} label="Directional Light On/Off" onChange={toggleDirectionalLight} />
           </FormGroup>
@@ -36,4 +43,14 @@ const StyledControlsContainer = styled('div')`
   height: 100%;
   background-color: darkgray;
   padding: 0 20px;
+`;
+
+const StyledTitle = styled('div')`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+const StyledClose = styled(IconButton)`
+
 `;
