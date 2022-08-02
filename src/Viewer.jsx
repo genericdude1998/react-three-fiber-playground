@@ -39,7 +39,13 @@ export default function Viewer({ tabValue }) {
         {directionalLight.active && <directionalLight position={[10, 10, 10]} intensity={5} />}
         <Box position={[0, 0, 0]} material={material} />
         <Html fullscreen>
-          {!open && <Button onClick={toggleDrawer} sx={{ position: 'absolute', left: '90%', backgroundColor: 'white' }}>Controls</Button>}
+          {!open && (
+          <ControlsButton
+            onClick={toggleDrawer}
+          >
+            Controls
+          </ControlsButton>
+          )}
         </Html>
       </Canvas>
       <Controls toggleDrawer={toggleDrawer} open={open} setDirectionalLight={setDirectionalLight} />
@@ -52,4 +58,17 @@ const CanvasWrapper = styled('div')`
   margin-top: 64px;
   width: 100vw;
   height: 70vh;
+`;
+
+const ControlsButton = styled(Button)`
+  position: absolute; 
+  left: 90%; 
+  top: 5%; 
+  background-color: white;
+  color: black;
+
+  :hover{
+  background-color: white;
+  box-shadow: 5px 10px 18px black;
+  }
 `;
