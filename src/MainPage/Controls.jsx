@@ -1,13 +1,18 @@
 import * as React from 'react';
 import Drawer from '@mui/material/Drawer';
 import {
-  styled, Switch, Typography, FormGroup, FormControlLabel, IconButton,
+  styled, Switch, Typography, FormGroup, FormControlLabel, IconButton, Slider,
 } from '@mui/material';
 import { Close } from '@mui/icons-material';
 
-export default function Controls({ toggleDrawer, open, setDirectionalLight }) {
+export default function Controls({
+  toggleDrawer, open, setDirectionalLight, setDirectionalLightIntensity, directionalLightIntensity,
+}) {
   const toggleDirectionalLight = () => {
     setDirectionalLight((dir) => ({ ...dir, active: !(dir.active) }));
+  };
+  const changeDirLightIntensity = (e) => {
+    setDirectionalLightIntensity(e.target.value);
   };
 
   return (
@@ -17,19 +22,30 @@ export default function Controls({ toggleDrawer, open, setDirectionalLight }) {
         open={open}
         onClose={toggleDrawer}
         BackdropProps={{ invisible: true }}
-
       >
         <StyledControlsContainer>
           <StyledTitle>
             <Typography align="center" sx={{ flexGrow: 1 }}>Controls</Typography>
-            <StyledClose onClick={toggleDrawer}>
+            <IconButton onClick={toggleDrawer}>
               <Close />
-            </StyledClose>
+            </IconButton>
           </StyledTitle>
 
-          <FormGroup>
-            <FormControlLabel control={<Switch defaultChecked />} label="Directional Light On/Off" onChange={toggleDirectionalLight} />
-          </FormGroup>
+          <StyledControlContainer>
+            <FormGroup>
+              <FormControlLabel control={<Switch defaultChecked />} label="Directional Light On/Off" onChange={toggleDirectionalLight} />
+            </FormGroup>
+          </StyledControlContainer>
+
+          <StyledControlContainer>
+            <Typography>
+              Directional Light Intensity:
+              {' '}
+              {directionalLightIntensity}
+            </Typography>
+            <Slider onChange={changeDirLightIntensity} value={directionalLightIntensity} />
+          </StyledControlContainer>
+
         </StyledControlsContainer>
       </Drawer>
     </React.Fragment>
@@ -51,6 +67,8 @@ const StyledTitle = styled('div')`
   align-items: center;
 `;
 
-const StyledClose = styled(IconButton)`
-
+const StyledControlContainer = styled('div')`
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
 `;
