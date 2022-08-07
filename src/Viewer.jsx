@@ -28,6 +28,7 @@ export default function Viewer({ tabValue }) {
   const [open, setOpen] = React.useState(false);
   const [directionalLight, setDirectionalLight] = React.useState({ active: true });
   const [directionalLightIntensity, setDirectionalLightIntensity] = React.useState(1);
+  const [directionalLightColour, setDirectionalLightColour] = React.useState('#FFFFFF');
 
   const toggleDrawer = () => {
     setOpen((prevState) => !prevState);
@@ -38,7 +39,13 @@ export default function Viewer({ tabValue }) {
       <Canvas>
         <Camera />
         {directionalLight.active
-        && <directionalLight position={[10, 10, 10]} intensity={directionalLightIntensity} />}
+        && (
+        <directionalLight
+          position={[10, 10, 10]}
+          intensity={directionalLightIntensity}
+          color={directionalLightColour}
+        />
+        )}
         <Box position={[0, 0, 0]} material={material} />
         <Html fullscreen>
           {!open && (
@@ -56,6 +63,8 @@ export default function Viewer({ tabValue }) {
         setDirectionalLight={setDirectionalLight}
         directionalLightIntensity={directionalLightIntensity}
         setDirectionalLightIntensity={setDirectionalLightIntensity}
+        directionalLightColour={directionalLightColour}
+        setDirectionalLightColour={setDirectionalLightColour}
       />
     </CanvasWrapper>
   );

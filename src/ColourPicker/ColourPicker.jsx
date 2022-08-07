@@ -7,7 +7,7 @@ const colours = [
   '#00FF00',
   '#0000FF',
   '#FFFF00',
-  '#FFFFF',
+  '#FFFFFF',
   '#000000',
   '#FF00FF',
   '#00FFFF',
@@ -15,22 +15,24 @@ const colours = [
   '#CC8500',
 ];
 
-export default function ColourPicker() {
+export default function ColourPicker({ changeDirLightColour, directionalLightColour }) {
   return (
     <ColourPickerColumn>
       {colours.map((_, index) => (
         !(index % 5)
           && (
-            index === 0 ? (
-              <ColourPickerRow style={{ marginTop: '5px' }}>
-                {colours.map((colour, index2) => index2 < 5 && <ColourPickerColourSquare style={{ backgroundColor: colour }} />)}
-              </ColourPickerRow>
-            )
-              : (
-                <ColourPickerRow>
-                  {colours.map((colour, index2) => index2 >= index && index2 < index + 5 && <ColourPickerColourSquare style={{ backgroundColor: colour }} />)}
-                </ColourPickerRow>
-              )
+            <ColourPickerRow id={index}>
+              {colours.map((colour, index2) => index2 >= index && index2 < index + 5
+              && (
+              <ColourPickerColourSquare
+                style={
+                  { backgroundColor: colour, border: directionalLightColour === colour && '3px solid magenta' }
+                }
+                id={colour}
+                onClick={changeDirLightColour(colour)}
+              />
+              ))}
+            </ColourPickerRow>
           )
 
       ))}
@@ -46,11 +48,14 @@ const ColourPickerColumn = styled('div')`
 
 const ColourPickerRow = styled('div')`
     display: flex;
-    margin: 0 5px;
+    margin: 1px 5px;
 `;
 
 const ColourPickerColourSquare = styled('div')`
     height: 50px;
     width: 50px;
     padding: 3px;
+    :hover {
+      border: 1px solid white;
+    }
 `;

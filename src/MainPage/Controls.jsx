@@ -8,12 +8,16 @@ import ColourPicker from '../ColourPicker/ColourPicker';
 
 export default function Controls({
   toggleDrawer, open, setDirectionalLight, setDirectionalLightIntensity, directionalLightIntensity,
+  setDirectionalLightColour, directionalLightColour,
 }) {
   const toggleDirectionalLight = () => {
     setDirectionalLight((dir) => ({ ...dir, active: !(dir.active) }));
   };
   const changeDirLightIntensity = (e) => {
     setDirectionalLightIntensity(e.target.value);
+  };
+  const changeDirLightColour = (colour) => () => {
+    setDirectionalLightColour(colour);
   };
 
   return (
@@ -51,7 +55,10 @@ export default function Controls({
             <Typography>
               Directional Light Colour:
             </Typography>
-            <ColourPicker />
+            <ColourPicker
+              directionalLightColour={directionalLightColour}
+              changeDirLightColour={changeDirLightColour}
+            />
           </StyledControlContainer>
 
         </StyledControlsContainer>
