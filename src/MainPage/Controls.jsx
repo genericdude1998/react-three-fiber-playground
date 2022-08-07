@@ -4,6 +4,7 @@ import {
   styled, Switch, Typography, FormGroup, FormControlLabel, IconButton, Slider,
 } from '@mui/material';
 import { Close } from '@mui/icons-material';
+import ColourPicker from '../ColourPicker/ColourPicker';
 
 export default function Controls({
   toggleDrawer, open, setDirectionalLight, setDirectionalLightIntensity, directionalLightIntensity,
@@ -44,6 +45,13 @@ export default function Controls({
               {directionalLightIntensity}
             </Typography>
             <Slider onChange={changeDirLightIntensity} value={directionalLightIntensity} />
+          </StyledControlContainer>
+
+          <StyledControlContainer>
+            <Typography>
+              Directional Light Colour:
+            </Typography>
+            <ColourPicker />
           </StyledControlContainer>
 
         </StyledControlsContainer>
