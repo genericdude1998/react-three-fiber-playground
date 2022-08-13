@@ -8,7 +8,7 @@ import Box from './Box';
 import Camera from './Camera';
 import Controls from './MainPage/Controls';
 
-export default function Viewer({ tabValue, geometry }) {
+export default function Viewer({ tabValue }) {
   let material;
   switch (tabValue) {
     case 0:
@@ -24,6 +24,12 @@ export default function Viewer({ tabValue, geometry }) {
     default:
       material = <meshBasicMaterial />; break;
   }
+
+  const [open, setOpen] = React.useState(false);
+  const [directionalLight, setDirectionalLight] = React.useState({ active: true });
+  const [directionalLightIntensity, setDirectionalLightIntensity] = React.useState(1);
+  const [directionalLightColour, setDirectionalLightColour] = React.useState('#FFFFFF');
+  const [geometry, setGeometry] = React.useState(5);
 
   let geometryToDisplay;
   switch (geometry) {
@@ -41,10 +47,9 @@ export default function Viewer({ tabValue, geometry }) {
       geometryToDisplay = <cylinderBufferGeometry args={[10, 10, 25]} />; break;
   }
 
-  const [open, setOpen] = React.useState(false);
-  const [directionalLight, setDirectionalLight] = React.useState({ active: true });
-  const [directionalLightIntensity, setDirectionalLightIntensity] = React.useState(1);
-  const [directionalLightColour, setDirectionalLightColour] = React.useState('#FFFFFF');
+  const changeGeometry = (index) => {
+    setGeometry(index);
+  };
 
   const toggleDrawer = () => {
     setOpen((prevState) => !prevState);
@@ -81,6 +86,7 @@ export default function Viewer({ tabValue, geometry }) {
         setDirectionalLightIntensity={setDirectionalLightIntensity}
         directionalLightColour={directionalLightColour}
         setDirectionalLightColour={setDirectionalLightColour}
+        changeGeometry={changeGeometry}
       />
     </CanvasWrapper>
   );

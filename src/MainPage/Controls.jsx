@@ -5,10 +5,11 @@ import {
 } from '@mui/material';
 import { Close } from '@mui/icons-material';
 import ColourPicker from '../ColourPicker/ColourPicker';
+import GeometryPicker from '../GeometryPicker';
 
 export default function Controls({
   toggleDrawer, open, setDirectionalLight, setDirectionalLightIntensity, directionalLightIntensity,
-  setDirectionalLightColour, directionalLightColour,
+  setDirectionalLightColour, directionalLightColour, changeGeometry,
 }) {
   const toggleDirectionalLight = () => {
     setDirectionalLight((dir) => ({ ...dir, active: !(dir.active) }));
@@ -58,6 +59,15 @@ export default function Controls({
             <ColourPicker
               directionalLightColour={directionalLightColour}
               changeDirLightColour={changeDirLightColour}
+            />
+          </StyledControlContainer>
+
+          <StyledControlContainer>
+            <Typography>
+              Geometries:
+            </Typography>
+            <GeometryPicker
+              changeGeometry={changeGeometry}
             />
           </StyledControlContainer>
 
