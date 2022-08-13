@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
 
-export default function Box({ material }) {
+export default function Box({ material, geometry }) {
   const mesh = useRef();
   useFrame(() => {
     mesh.current.rotation.x += 0.01;
@@ -12,7 +12,7 @@ export default function Box({ material }) {
     <mesh
       ref={mesh}
     >
-      <torusKnotGeometry args={[10, 3, 100, 16]} />
+      {geometry}
       {material}
     </mesh>
   );

@@ -8,6 +8,7 @@ import TabPanel from './TabPanel';
 
 export default function MainPage() {
   const [tabValue, setTabValue] = React.useState(0);
+  const [geometry] = React.useState(5);
 
   const handleTabValueChange = (e, newValue) => {
     setTabValue(newValue);
@@ -21,7 +22,7 @@ export default function MainPage() {
         </Toolbar>
       </AppBar>
 
-      <Viewer tabValue={tabValue} />
+      <Viewer tabValue={tabValue} geometry={geometry} />
 
       <Tabs value={tabValue} onChange={handleTabValueChange}>
         <Tab label="Phong" />

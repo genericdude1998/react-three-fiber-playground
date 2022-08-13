@@ -8,21 +8,37 @@ import Box from './Box';
 import Camera from './Camera';
 import Controls from './MainPage/Controls';
 
-export default function Viewer({ tabValue }) {
+export default function Viewer({ tabValue, geometry }) {
   let material;
   switch (tabValue) {
     case 0:
-      material = <meshPhongMaterial color="orange" />; break;
+      material = <meshPhongMaterial />; break;
     case 1:
-      material = <meshLambertMaterial color="blue" />; break;
+      material = <meshLambertMaterial />; break;
     case 2:
       material = <meshNormalMaterial />; break;
     case 3:
-      material = <meshToonMaterial color="green" />; break;
+      material = <meshToonMaterial />; break;
     case 4:
       material = <meshPhongMaterial wireframe />; break;
     default:
-      material = <meshBasicMaterial color="hotpink" />; break;
+      material = <meshBasicMaterial />; break;
+  }
+
+  let geometryToDisplay;
+  switch (geometry) {
+    case 0:
+      geometryToDisplay = <planeBufferGeometry args={[15, 15]} />; break;
+    case 1:
+      geometryToDisplay = <boxGeometry args={[15, 15, 15]} />; break;
+    case 2:
+      geometryToDisplay = <sphereBufferGeometry args={[15]} />; break;
+    case 3:
+      geometryToDisplay = <torusBufferGeometry args={[15, 2]} />; break;
+    case 4:
+      geometryToDisplay = <torusKnotBufferGeometry args={[10, 5]} />; break;
+    default:
+      geometryToDisplay = <cylinderBufferGeometry args={[10, 10, 25]} />; break;
   }
 
   const [open, setOpen] = React.useState(false);
@@ -46,7 +62,7 @@ export default function Viewer({ tabValue }) {
           color={directionalLightColour}
         />
         )}
-        <Box position={[0, 0, 0]} material={material} />
+        <Box position={[0, 0, 0]} material={material} geometry={geometryToDisplay} />
         <Html fullscreen>
           {!open && (
           <ControlsButton
