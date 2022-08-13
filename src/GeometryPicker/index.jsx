@@ -49,8 +49,12 @@ const GeometryPickerRow = styled('div')`
 const GeometryPickerOption = styled(Button)`
     height: 50px;
     width: 50px;
-    padding: 3px;
+    margin: 3px;
     :hover {
       border: 1px solid white;
     }
 `;
+
+GeometryPickerOption.defaultProps = {
+  variant: 'contained',
+};
